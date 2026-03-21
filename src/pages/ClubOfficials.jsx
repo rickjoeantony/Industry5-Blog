@@ -78,7 +78,7 @@ const ClubOfficials = () => {
             <TreeNodeCard
               name="Mrs. E. Yuvabharathi"
               role="JIT IEEE CS Advisor & AP-IT"
-              linkedin="#"
+              linkedin="https://www.linkedin.com/in/yuvabharathi-elumalai-52a19a47?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
               image="/images/yuvabharathi.png"
             />
           </div>
