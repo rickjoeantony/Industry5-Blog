@@ -642,16 +642,16 @@ body.light-theme .project-title {
 
 @media (max-width: 600px) {
   :root {
-    --tree-card-width: 22vw;
-    --tree-card-gap: 1.5vw;
+    --tree-card-width: 19vw;
+    --tree-card-gap: 2vw;
   }
 
   .futuristic-container {
-    padding: 2rem 0; /* Remove horizontal padding entirely to maximize screen width */
+    padding: 1.5rem 0.2rem;
     overflow-x: hidden;
   }
 
-  /* Force tree horizontal, restrict width to 100vw perfectly */
+  /* Force tree horizontal, safely scaled down */
   .tree-level {
     flex-wrap: nowrap;
     width: 100%;
@@ -665,7 +665,7 @@ body.light-theme .project-title {
     min-width: var(--tree-card-width);
     max-width: var(--tree-card-width);
     width: var(--tree-card-width);
-    height: 35vw;
+    height: 30vw;
     margin: 0;
     border-radius: 6px;
     border-width: 0.5px;
@@ -695,15 +695,28 @@ body.light-theme .project-title {
   }
   
   /* Extremely compact typography to fit on tiny cards */
-  .card-top-info { padding: 0.2rem; }
-  .card-name { font-size: 2vw; margin-bottom: 2px; text-shadow: none; white-space: normal; line-height: 1.1; }
-  .card-role { font-size: 1.6vw; text-shadow: none; white-space: normal; line-height: 1.1; }
-  .founder-badge { font-size: 1.6vw; padding: 1px 4px; letter-spacing: 0; border-radius: 4px; border: none; top: 4px; }
+  .card-top-info { padding: 0.15rem; }
+  .card-name { font-size: 2.1vw; margin-bottom: 2px; text-shadow: none; white-space: normal; line-height: 1.1; }
+  .card-role { font-size: 1.5vw; text-shadow: none; white-space: normal; line-height: 1.1; }
+  
+  .founder-badge { 
+    font-size: 1.3vw; 
+    padding: 2px 4px; 
+    letter-spacing: 0; 
+    border-radius: 3px; 
+    border: none; 
+    top: 2px; 
+    max-width: 85%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
   .linkedin-overlay { padding: 0.2rem; }
-  .linkedin-header { margin-bottom: 0.2rem; padding-bottom: 0.2rem; }
+  .linkedin-header { margin-bottom: 0.1rem; padding-bottom: 0.1rem; }
   .linkedin-header span { font-size: 2vw; }
-  .overlay-name { font-size: 2.3vw; margin-bottom: 1px; }
-  .overlay-role { font-size: 1.8vw; margin-bottom: 0.2rem; }
+  .overlay-name { font-size: 2.1vw; margin-bottom: 1px; }
+  .overlay-role { font-size: 1.5vw; margin-bottom: 0.2rem; }
   .card-desc { display: none; }
-  .view-profile-btn { padding: 0.2rem; font-size: 1.8vw; border-radius: 3px; }
+  .view-profile-btn { padding: 0.2rem; font-size: 1.6vw; border-radius: 3px; }
 }
