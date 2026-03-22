@@ -41,10 +41,10 @@ const TreeNodeCard = ({ name, role, desc, linkedin, image, imageStyle, founderCo
       <div className="card-top-info">
         <h3 className="card-name">{name.toUpperCase()}</h3>
         <p className="card-role">{role}</p>
+        {founderCompany && <div className="founder-badge">FOUNDER • {founderCompany.toUpperCase()}</div>}
       </div>
 
       <div className="card-image-wrapper">
-        {founderCompany && <div className="founder-badge">FOUNDER • {founderCompany.toUpperCase()}</div>}
         <img src={imgUrl} alt={name} className="person-image" style={imageStyle} />
       </div>
 
@@ -86,7 +86,7 @@ const ClubOfficials = () => {
             <TreeNodeCard
               name="Mrs. R. Ruthshobitha"
               role="JIT IEEE CS Mentor & AP-IT"
-              linkedin="#"
+              linkedin="https://www.linkedin.com/in/r-ruth-shobitha-0b4bb6364"
               image="/images/ruthshobitha.png"
             />
           </div>
@@ -94,7 +94,7 @@ const ClubOfficials = () => {
             <TreeNodeCard
               name="Mrs. M.Shruti"
               role="JIT IEEE CS Counsellor & AP-IT"
-              linkedin="#"
+              linkedin="https://www.linkedin.com/in/shruthi-m-637762170?utm_source=share_via&utm_content=profile&utm_medium=member_android"
               image="/images/surudhi.png"
             />
           </div>
@@ -109,7 +109,7 @@ const ClubOfficials = () => {
               desc="Founder at Crewplay"
               linkedin="https://www.linkedin.com/in/vishnuprasad-sde"
               image="/images/vishnu_new.png"
-              imageStyle={{ objectFit: 'contain', objectPosition: 'center center', transform: 'scale(1.4)' }}
+              imageStyle={{ objectFit: 'cover', objectPosition: 'center 20%', width: '100%', height: '100%' }}
               founderCompany="Crewplay"
             />
           </div>
@@ -124,7 +124,7 @@ const ClubOfficials = () => {
               desc="Founder at Leukquant"
               linkedin="https://www.linkedin.com/in/rickjoe-antony-j-83208b37a"
               image="/images/rickjoe_new.png"
-              imageStyle={{ objectFit: 'contain', objectPosition: 'center 75%', transform: 'scale(1.15)' }}
+              imageStyle={{ objectFit: 'cover', objectPosition: 'top center', width: '100%', height: '100%' }}
               founderCompany="Leukquant"
             />
           </div>

@@ -41,10 +41,10 @@ const TreeNodeCard = ({ name, role, desc, linkedin, image, imageStyle, founderCo
       <div className="card-top-info">
         <h3 className="card-name">{name.toUpperCase()}</h3>
         <p className="card-role">{role}</p>
+        {founderCompany && <div className="founder-badge">FOUNDER • {founderCompany.toUpperCase()}</div>}
       </div>
 
       <div className="card-image-wrapper">
-        {founderCompany && <div className="founder-badge">FOUNDER • {founderCompany.toUpperCase()}</div>}
         <img src={imgUrl} alt={name} className="person-image" style={imageStyle} />
       </div>
 
@@ -74,8 +74,8 @@ const OngoingProjects = () => {
         name: "Rickjoe Antony J",
         role: "Team Leader",
         linkedin: "https://www.linkedin.com/in/rickjoe-antony-j-83208b37a",
-        image: "/images/rickjoe.png",
-        imageStyle: { objectFit: 'contain', objectPosition: 'center 75%', transform: 'scale(1.15)' },
+        image: "/images/rickjoe_new.png",
+        imageStyle: { objectFit: 'cover', objectPosition: 'top center', width: '100%', height: '100%' },
         founderCompany: "Leukquant"
       },
       members: [
