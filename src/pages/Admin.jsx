@@ -4,8 +4,9 @@ import { PenLine, Save, Tags, Image, FileText, User, Lock, LogOut, ShieldCheck, 
 import { savePost, getPosts, deletePost } from '../utils/storage';
 import './Admin.css';
 
-const ADMIN_ID = 'industry5admin';
-const ADMIN_PASS = 'ClubAccess2026!';
+const ADMIN_ID = import.meta.env.VITE_ADMIN_ID || 'industry5admin';
+const ADMIN_PASS = import.meta.env.VITE_ADMIN_PASS || 'ClubAccess2026!';
+const VALID_TOKEN = btoa(`${ADMIN_ID}:${ADMIN_PASS}`);
 
 const Admin = () => {
   const navigate = useNavigate();
@@ -16,16 +17,26 @@ const Admin = () => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    if (localStorage.getItem('clubIndustryAdminAuth') === 'true') {
+    if (localStorage.getItem('adminSessionToken') === VALID_TOKEN) {
       setIsAuthenticated(true);
       setPosts(getPosts());
+    } else if (localStorage.getItem('clubIndustryAdminAuth') === 'true') {
+      // Migrate old sessions for seamless experience, though less secure
+      localStorage.setItem('adminSessionToken', VALID_TOKEN);
+      localStorage.removeItem('clubIndustryAdminAuth');
+      setIsAuthenticated(true);
+      setPosts(getPosts());
+    } else {
+      // Clear any invalid tokens
+      localStorage.removeItem('adminSessionToken');
+      setIsAuthenticated(false);
     }
   }, []);
 
   const handleLogin = (e) => {
     e.preventDefault();
     if (loginForm.userid === ADMIN_ID && loginForm.password === ADMIN_PASS) {
-      localStorage.setItem('clubIndustryAdminAuth', 'true');
+      localStorage.setItem('adminSessionToken', VALID_TOKEN);
       setIsAuthenticated(true);
       setPosts(getPosts());
     } else {
@@ -34,7 +45,7 @@ const Admin = () => {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('clubIndustryAdminAuth');
+    localStorage.removeItem('adminSessionToken');
     setIsAuthenticated(false);
   };
 
@@ -43,6 +54,21 @@ const Admin = () => {
     const tags = formData.tags.split(',').map(t => t.trim()).filter(Boolean);
     savePost({ ...formData, tags: tags.length ? tags : ['General'] });
     navigate('/');
+  };
+
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      if (file.size > 5 * 1024 * 1024) {
+        alert('File size should be less than 5MB');
+        return;
+      }
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setFormData(p => ({ ...p, imageUrl: reader.result }));
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   const handleDeletePost = (id) => {
@@ -118,9 +144,20 @@ const Admin = () => {
             </div>
           </div>
           <div className="field">
-            <label htmlFor="imageUrl"><Image size={14} /> Cover Image URL</label>
-            <input id="imageUrl" name="imageUrl" type="url" placeholder="https://…"
-              value={formData.imageUrl} onChange={e => setFormData(p => ({ ...p, imageUrl: e.target.value }))} />
+            <label htmlFor="imageUrl"><Image size={14} /> Cover Image</label>
+            <input id="imageFile" name="imageFile" type="file" accept="image/*"
+              onChange={handleImageUpload} style={{ padding: '0.4rem', background: 'rgba(255,255,255,0.05)', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.1)', color: '#fff', fontSize: '0.9rem' }} />
+            
+            {formData.imageUrl && (
+              <div style={{ marginTop: '10px', display: 'flex', justifyContent: 'center', background: 'rgba(0,0,0,0.2)', padding: '10px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.05)' }}>
+                <img src={formData.imageUrl} alt="Cover Preview" style={{ maxHeight: '200px', maxWidth: '100%', objectFit: 'contain', borderRadius: '4px' }} />
+              </div>
+            )}
+            
+            <div style={{ marginTop: '0.8rem', display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
+              <span style={{ color: '#94A3B8', fontSize: '0.85rem' }}>Or provide an image URL if you prefer:</span>
+              <input id="imageUrl" name="imageUrl" type="url" placeholder="https://…" value={formData.imageUrl.startsWith('data:') ? '' : formData.imageUrl} onChange={e => setFormData(p => ({ ...p, imageUrl: e.target.value }))} />
+            </div>
           </div>
           <div className="field">
             <label htmlFor="content"><FileText size={14} /> Content</label>
