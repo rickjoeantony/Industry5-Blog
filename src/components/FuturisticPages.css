@@ -204,9 +204,11 @@
 }
 
 .founder-badge {
-  position: relative;
-  display: inline-block;
-  margin-top: 0.5rem;
+  position: absolute;
+  top: auto;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
   width: max-content;
   max-width: 90%;
   background: linear-gradient(135deg, #FFD700, #ff8c00);
@@ -231,6 +233,7 @@
     font-size: 0.55rem;
     padding: 3px 8px;
     letter-spacing: 1px;
+    bottom: 8px;
   }
 }
 
@@ -240,6 +243,7 @@
     padding: 2px 6px;
     letter-spacing: 0.5px;
     border-radius: 6px;
+    bottom: 6px;
   }
 }
 
@@ -702,6 +706,7 @@ body.light-theme .project-title {
     letter-spacing: -0.2px; 
     border-radius: 3px; 
     border: none; 
+    bottom: 4px; 
     max-width: 96%;
     white-space: normal;
     text-align: center;

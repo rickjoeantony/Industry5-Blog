@@ -41,10 +41,10 @@ const TreeNodeCard = ({ name, role, desc, linkedin, image, imageStyle, founderCo
       <div className="card-top-info">
         <h3 className="card-name">{name.toUpperCase()}</h3>
         <p className="card-role">{role}</p>
-        {founderCompany && <div className="founder-badge">FOUNDER • {founderCompany.toUpperCase()}</div>}
       </div>
 
       <div className="card-image-wrapper">
+        {founderCompany && <div className="founder-badge">FOUNDER • {founderCompany.toUpperCase()}</div>}
         <img src={imgUrl} alt={name} className="person-image" style={imageStyle} />
       </div>
 
