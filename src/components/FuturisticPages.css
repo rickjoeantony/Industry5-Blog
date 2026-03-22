@@ -373,6 +373,11 @@
   /* Space for the vertical line */
 }
 
+/* Leave space for branches from the upper levels to drop freely before the horizontal branches begin */
+.tree-level + .tree-level {
+  margin-top: 3rem;
+}
+
 /* Animations for flowing energy */
 @keyframes energy-flow-v {
   0% {
@@ -693,6 +698,10 @@ body.light-theme .project-title {
   }
   .tree-level {
     padding-top: 2rem;
+  }
+  
+  .tree-level + .tree-level {
+    margin-top: 2rem;
   }
   
   /* Extremely compact typography to fit on tiny cards */
