@@ -92,7 +92,7 @@ const ClubOfficials = () => {
           </div>
           <div className="tree-node" style={{ zIndex: 1, marginTop: '2rem' }}>
             <TreeNodeCard
-              name="Mrs. M. Surudhi"
+              name="Mrs. M.Shruti"
               role="JIT IEEE CS Counsellor & AP-IT"
               linkedin="#"
               image="/images/surudhi.png"
@@ -108,7 +108,7 @@ const ClubOfficials = () => {
               role="Chairperson"
               desc="Founder at Crewplay"
               linkedin="https://www.linkedin.com/in/vishnuprasad-sde"
-              image="/images/vishnu.png"
+              image="/images/vishnu_new.png"
               imageStyle={{ objectFit: 'contain', objectPosition: 'center center', transform: 'scale(1.4)' }}
               founderCompany="Crewplay"
             />
@@ -123,7 +123,7 @@ const ClubOfficials = () => {
               role="Secretary"
               desc="Founder at Leukquant"
               linkedin="https://www.linkedin.com/in/rickjoe-antony-j-83208b37a"
-              image="/images/rickjoe.png"
+              image="/images/rickjoe_new.png"
               imageStyle={{ objectFit: 'contain', objectPosition: 'center 75%', transform: 'scale(1.15)' }}
               founderCompany="Leukquant"
             />
